@@ -49,6 +49,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingStingsParser.cs" />
+    <Compile Include="SettingValueCannotBeFoundException.cs" />
+    <Compile Include="SettingValueParseException.cs" />
     <Compile Include="SubscribtionType.cs" />
     <Compile Include="TypedConfigProxy.cs" />
   </ItemGroup>

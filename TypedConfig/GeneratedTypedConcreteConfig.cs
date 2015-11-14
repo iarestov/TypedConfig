@@ -7,7 +7,7 @@ namespace TypedConfig
     {
         private readonly Func<string, string> _configProvider;
 
-        public GeneratedTypedConcreteConfig(Func<string,string> configProvider  )
+        public GeneratedTypedConcreteConfig(Func<string,string> configProvider)
         {
             _configProvider = configProvider;
         }
