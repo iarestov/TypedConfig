@@ -2,7 +2,7 @@ using System.Net.Mail;
 
 namespace TypedConfig
 {
-    public interface ITypedConcreteConfig
+    public interface IExampleTypedConfig
     {
         string FirstName { get; }
         string LastName { get; }

@@ -26,8 +26,8 @@ namespace TypedConfig
             Func<string, string> settingGetter = s => ConfigValuesFromAnySource[s];
             var settings = new []
             {
-                new GeneratedTypedConcreteConfig(settingGetter),
-                TypedConfigProxy<ITypedConcreteConfig>.Create(settingGetter)
+                new GeneratedExampleTypedConfig(settingGetter),
+                TypedConfig.Create<IExampleTypedConfig>(settingGetter)
             };
 
             foreach (var setting in settings)
@@ -45,7 +45,7 @@ namespace TypedConfig
             Console.ReadKey();
         }
 
-        private static TimeSpan MeasureAccessTime(ITypedConcreteConfig config, int count)
+        private static TimeSpan MeasureAccessTime(IExampleTypedConfig config, int count)
         {
             var watch = new Stopwatch();
             watch.Start();

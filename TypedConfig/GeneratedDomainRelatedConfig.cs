@@ -3,11 +3,11 @@ using System.Net.Mail;
 
 namespace TypedConfig
 {
-    public class GeneratedTypedConcreteConfig : ITypedConcreteConfig
+    public class GeneratedDomainRelatedConfig : IDomainRelatedConfig
     {
         private readonly Func<string, string> _configProvider;
 
-        public GeneratedTypedConcreteConfig(Func<string,string> configProvider)
+        public GeneratedDomainRelatedConfig(Func<string,string> configProvider)
         {
             _configProvider = configProvider;
         }
@@ -28,20 +28,20 @@ namespace TypedConfig
         }
         public decimal MounthlyFee
         {
-            get { return SettingStingsParser.GetDecimal(_configProvider.Invoke("MounthlyFee")); }
+            get { return KnownTypeDeserializer.GetDecimal(_configProvider.Invoke("MounthlyFee")); }
         }
 
         public decimal Balance
         {
-            get { return SettingStingsParser.GetDecimal(_configProvider.Invoke("Balance")); }
+            get { return KnownTypeDeserializer.GetDecimal(_configProvider.Invoke("Balance")); }
         }
         public MailAddress CustomerMail
         {
-            get { return SettingStingsParser.GetMailAddress(_configProvider.Invoke("CustomerMail")); }
+            get { return KnownTypeDeserializer.GetMailAddress(_configProvider.Invoke("CustomerMail")); }
         }
         public SubscribtionType Subscription
         {
-            get { return SettingStingsParser.GetSubscribtionType(_configProvider.Invoke("Subscription")); }
+            get { return KnownTypeDeserializer.GetSubscribtionType(_configProvider.Invoke("Subscription")); }
         }
     }
 }

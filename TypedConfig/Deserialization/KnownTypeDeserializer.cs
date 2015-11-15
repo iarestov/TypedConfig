@@ -3,7 +3,7 @@ using System.Net.Mail;
 
 namespace TypedConfig
 {
-    public static class SettingStingsParser
+    public static class KnownTypeDeserializer
     {
         public static decimal GetDecimal(string value)
         {
