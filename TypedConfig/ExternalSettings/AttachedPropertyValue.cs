@@ -13,16 +13,16 @@ namespace TypedConfig.ExternalSettings
         public string Value { get; set; }
     }
 
-    class AttachedProperty
-    {
-        public int Id { get; set; }
-        public string EntityType { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-    }
+    //class AttachedProperty
+    //{
+    //    public int Id { get; set; }
+    //    public string EntityType { get; set; }
+    //    public string Name { get; set; }
+    //    public string Type { get; set; }
+    //}
 
-    class PropertyContext : DbContext
-    {
+    //class PropertyContext : DbContext
+    //{
         
-    }
+    //}
 }

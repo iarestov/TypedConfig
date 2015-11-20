@@ -53,16 +53,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExternalSettings\ExternalProperty.cs" />
-    <Compile Include="GeneratedExampleTypedConfig.cs" />
-    <Compile Include="IExampleTypedConfig.cs" />
+    <Compile Include="Deserialization\KnownTypeDeserializer.cs" />
+    <Compile Include="Deserialization\PropertyValueCannotBeObtainedException.cs" />
+    <Compile Include="Deserialization\TypedPropertyDeserializer.cs" />
+    <Compile Include="Deserialization\UnregisteredPropertyExcepiton.cs" />
+    <Compile Include="Deserialization\UnregisteredTypeDesirializerExcepiton.cs" />
+    <Compile Include="Deserialization\ValueDeserializationException.cs" />
+    <Compile Include="Domain\IDomainRelatedConfig.cs" />
+    <Compile Include="Domain\SubscribtionType.cs" />
+    <Compile Include="ExternalSettings\AttachedProperty.cs" />
+    <Compile Include="ExternalSettings\AttachedPropertyValue.cs" />
+    <Compile Include="ExternalSettings\AttachedPropsSet.cs" />
+    <Compile Include="ExternalSettings\PropertyContext.cs" />
+    <Compile Include="GeneratedExampleConfig.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="KnownTypeDeserializer.cs" />
-    <Compile Include="PropertyCannotBeFoundException.cs" />
-    <Compile Include="ValueDeserializationException.cs" />
-    <Compile Include="SubscribtionType.cs" />
-    <Compile Include="TypedConfigProxy.cs" />
+    <Compile Include="TypedAdapter\FlatValuesToTypedClassAdapter.cs" />
+    <Compile Include="TypedAdapter\IPropertyValueProvider.cs" />
+    <Compile Include="TypedConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

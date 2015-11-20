@@ -3,11 +3,11 @@ using System.Net.Mail;
 
 namespace TypedConfig
 {
-    public class GeneratedDomainRelatedConfig : IDomainRelatedConfig
+    public class GeneratedExampleConfig : IExampleTypedConfig
     {
         private readonly Func<string, string> _configProvider;
 
-        public GeneratedDomainRelatedConfig(Func<string,string> configProvider)
+        public GeneratedExampleConfig(Func<string,string> configProvider)
         {
             _configProvider = configProvider;
         }

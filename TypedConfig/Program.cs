@@ -26,7 +26,7 @@ namespace TypedConfig
             Func<string, string> settingGetter = s => ConfigValuesFromAnySource[s];
             var settings = new []
             {
-                new GeneratedExampleTypedConfig(settingGetter),
+                new GeneratedExampleConfig(settingGetter),
                 TypedConfig.Create<IExampleTypedConfig>(settingGetter)
             };
 
@@ -37,7 +37,7 @@ namespace TypedConfig
                 var start = MeasureAccessTime(setting, 5).TotalMilliseconds;
                 Console.WriteLine("Started in {0} milliseconds",start);
                 Console.WriteLine();
-                var work = MeasureAccessTime(setting, 10000000).TotalMilliseconds;
+                var work = MeasureAccessTime(setting, 1000000).TotalMilliseconds;
                 Console.WriteLine("Finished work in {0} milliseconds",work);
                 Console.WriteLine();
             }

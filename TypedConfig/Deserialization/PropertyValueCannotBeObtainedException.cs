@@ -2,9 +2,9 @@ using System;
 
 namespace TypedConfig
 {
-    public class PropertyCannotBeFoundException : Exception
+    public class PropertyValueCannotBeObtainedException : Exception
     {
-        public PropertyCannotBeFoundException(string name, Exception exception)
+        public PropertyValueCannotBeObtainedException(string name, Exception exception)
         {
             
         }
