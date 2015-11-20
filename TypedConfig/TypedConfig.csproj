@@ -56,6 +56,7 @@
     <Compile Include="AttachedProperties\AttachedProperty.cs" />
     <Compile Include="AttachedProperties\AttachedPropertyValue.cs" />
     <Compile Include="AttachedProperties\AttachedSettingsFactory.cs" />
+    <Compile Include="AttachedProperties\ContextAdapter.cs" />
     <Compile Include="AttachedProperties\DbPersistedPropertyValueProvider.cs" />
     <Compile Include="AttachedProperties\IAttachedPropertyContext.cs" />
     <Compile Include="Domain\DefaultExampleConfig.cs" />

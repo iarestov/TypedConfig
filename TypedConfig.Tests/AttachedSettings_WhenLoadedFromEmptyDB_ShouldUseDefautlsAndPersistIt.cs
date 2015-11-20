@@ -19,15 +19,28 @@ namespace TypedConfig.Tests
         private IExampleTypedConfig _config;
         private DefaultExampleConfig _defaultExampleConfig;
 
+        [TestFixtureSetUp]
+        public void ClearDB()
+        {
+            using (var context = new PropertyContext())
+            {
+                context.DomainEntityAttachedPropertyValues.RemoveRange(context.DomainEntityAttachedPropertyValues);
+                context.DomainEntityAttachedProperties.RemoveRange(context.DomainEntityAttachedProperties);
+            }
+        }
+
         protected override void When()
         {
+
+           
             entityId = (new Fixture()).Create<int>();
             _defaultExampleConfig = new DefaultExampleConfig();
             _config = SUT.Create(entityId,
                                  _defaultExampleConfig,
-                                 () => new PropertyContext());
+                                 () => new ContextAdapter(new PropertyContext()));
         }
 
+        
         [Test]
         public void Then_FirstName_should_be_default()
         {
@@ -41,7 +54,7 @@ namespace TypedConfig.Tests
         }
 
         [Test]
-        public void Then_Db_should_be_know_firstName_property()
+        public void Then_Db_should_know_firstName_property()
         {
             var context = new PropertyContext();
             Assert.NotNull(context.DomainEntityAttachedProperties.Single(p => 
@@ -52,7 +65,7 @@ namespace TypedConfig.Tests
         }
 
         [Test]
-        public void Then_Db_should_be_know_mail_property()
+        public void Then_Db_should_know_mail_property()
         {
             var context = new PropertyContext();
             Assert.NotNull(context.DomainEntityAttachedProperties.Single(p =>

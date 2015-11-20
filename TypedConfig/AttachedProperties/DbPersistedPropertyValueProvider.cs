@@ -70,7 +70,7 @@ namespace TypedConfig.AttachedProperties
                     p => p.Value);
 
             foreach (var prop in typeof (T).GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                .Where(prop => !_knownProperties.ContainsKey(prop.Name)))
+                                 .Where(prop => !_loadedSerializedProperties.ContainsKey(prop.Name)))
             {
                 var propInfo = _knownProperties[prop.Name];
 
