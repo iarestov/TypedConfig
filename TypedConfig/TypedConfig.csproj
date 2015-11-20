@@ -71,6 +71,7 @@
     <Compile Include="Domain\IExampleTypedConfig.cs" />
     <Compile Include="Domain\SubscribtionType.cs" />
     <Compile Include="GeneratedExampleConfig.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypedAdapter\FlatValuesToTypedClassAdapter.cs" />

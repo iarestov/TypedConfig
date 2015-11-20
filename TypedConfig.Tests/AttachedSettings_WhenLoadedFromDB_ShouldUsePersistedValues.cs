@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using System.Reflection;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
 using SpecsFor;
@@ -8,39 +9,63 @@ using TypedConfig.Domain;
 namespace TypedConfig.Tests
 {
     [TestFixture]
-    internal class AttachedSettings_WhenLoadedFromDB_ShouldUsePersistedValues: SpecsFor<AttachedSettingsFactory<IExampleTypedConfig>>
+    public class AttachedSettings_WhenLoadedFromDB_ShouldUsePersistedValues:AttachedSettings_Persisting_Tests 
     {
+        private ConfigGeneratorDummy _existingConfig;
+
         class ConfigGeneratorDummy : IExampleTypedConfig
         {
-            public string FirstName { get; private set; }
-            public string LastName { get; private set; }
-            public string MiddleName { get; private set; }
-            public decimal MounthlyFee { get; private set; }
-            public decimal Balance { get; private set; }
-            public MailAddress CustomerMail { get; private set; }
-            public SubscribtionType Subscription { get; private set; }
+            public string FirstName { get;  set; }
+            public string LastName { get;  set; }
+            public string MiddleName { get;  set; }
+            public decimal MounthlyFee { get;  set; }
+            public decimal Balance { get;  set; }
+            public MailAddress CustomerMail { get;  set; }
+            public SubscribtionType Subscription { get;  set; }
         }
 
-        //private int entityId;
-        //private DefaultExampleConfig _config;
-        //private DefaultExampleConfig _defaultExampleConfig;
+        protected override void Given()
+        {
+            base.Given();
 
-        //protected override void When()
-        //{
-        //    entityId = (new Fixture()).Create<int>();
-        //    _defaultExampleConfig = new DefaultExampleConfig();
-        //    _config = SUT.Create(entityId,
-        //        _defaultExampleConfig,
-        //        () => new PropertyContext().DomainEntityAttachedProperties,
-        //        () => new PropertyContext().DomainEntityAttachedPropertyValues);
-        //}
+            var fixture = (new Fixture());
+            _existingConfig = fixture.Create<ConfigGeneratorDummy>();
 
-        //protected override void Given()
-        //{
-        //    using (var context = new PropertyContext())
-        //    {
-                
-        //    }
-        //}
+            using (var context = new PropertyContext())
+            {
+                foreach (var prop in typeof(IExampleTypedConfig).GetProperties(BindingFlags.Instance | BindingFlags.Public))
+                {
+                    var p =  context.DomainEntityAttachedProperties.Add(new AttachedProperty()
+                    {
+                        EntityType = typeof (DomainEntity).FullName,
+                        Name = prop.Name,
+                        Type = prop.PropertyType.FullName
+                    });
+
+                    context.SaveChanges();
+
+                    context.DomainEntityAttachedPropertyValues.Add(new AttachedPropertyValue()
+                    {
+                        EntityId = entityId,
+                        PropertyId = p.Id,
+                        Value = prop.GetValue(_existingConfig).ToString()
+                    });
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        [Test]
+        public void Then_FirstName_is_taken_from_persisted_storage()
+        {
+            Assert.AreEqual(_existingConfig.FirstName, _config.FirstName);
+        }
+
+        [Test]
+        public void Then_Mail_is_taken_from_persisted_storage()
+        {
+            Assert.AreEqual(_existingConfig.CustomerMail, _config.CustomerMail);
+        }
     }
 }

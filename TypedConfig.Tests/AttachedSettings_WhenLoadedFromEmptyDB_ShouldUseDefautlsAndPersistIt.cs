@@ -12,34 +12,41 @@ using TypedConfig.Domain;
 
 namespace TypedConfig.Tests
 {
-    [TestFixture]
-    class AttachedSettings_WhenLoadedFromEmptyDB_ShouldUseDefautlsAndPersistIt : SpecsFor<AttachedSettingsFactory<IExampleTypedConfig>>
-    {
-        private int entityId;
-        private IExampleTypedConfig _config;
-        private DefaultExampleConfig _defaultExampleConfig;
 
-        [TestFixtureSetUp]
-        public void ClearDB()
+    public class AttachedSettings_Persisting_Tests : SpecsFor<AttachedSettingsFactory<IExampleTypedConfig>>
+    {
+        protected int entityId;
+        protected IExampleTypedConfig _config;
+        protected DefaultExampleConfig _defaultExampleConfig;
+
+        public override void  SetupEachSpec()
         {
-            using (var context = new PropertyContext())
+             using (var context = new PropertyContext())
             {
-                context.DomainEntityAttachedPropertyValues.RemoveRange(context.DomainEntityAttachedPropertyValues);
-                context.DomainEntityAttachedProperties.RemoveRange(context.DomainEntityAttachedProperties);
+                context.Database.ExecuteSqlCommand("TRUNCATE TABLE AttachedProperties");
+                context.Database.ExecuteSqlCommand("TRUNCATE TABLE AttachedPropertyValues");
             }
+        }
+
+        protected override void Given()
+        {
+            entityId = (new Fixture()).Create<int>();
         }
 
         protected override void When()
         {
-
-           
-            entityId = (new Fixture()).Create<int>();
             _defaultExampleConfig = new DefaultExampleConfig();
             _config = SUT.Create(entityId,
                                  _defaultExampleConfig,
                                  () => new ContextAdapter(new PropertyContext()));
         }
 
+    }
+
+    [TestFixture]
+    class AttachedSettings_WhenLoadedFromEmptyDB_ShouldUseDefautlsAndPersistIt:AttachedSettings_Persisting_Tests 
+    {
+    
         
         [Test]
         public void Then_FirstName_should_be_default()
