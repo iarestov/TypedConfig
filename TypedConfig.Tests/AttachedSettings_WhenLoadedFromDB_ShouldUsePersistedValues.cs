@@ -37,7 +37,7 @@ namespace TypedConfig.Tests
                 {
                     var p =  context.DomainEntityAttachedProperties.Add(new AttachedProperty()
                     {
-                        EntityType = typeof (DomainEntity).FullName,
+                        EntityType = typeof(IExampleTypedConfig).FullName,
                         Name = prop.Name,
                         Type = prop.PropertyType.FullName
                     });
@@ -50,9 +50,10 @@ namespace TypedConfig.Tests
                         PropertyId = p.Id,
                         Value = prop.GetValue(_existingConfig).ToString()
                     });
+
+                    context.SaveChanges();
                 }
 
-                context.SaveChanges();
             }
         }
 

@@ -56,12 +56,12 @@
     <Compile Include="AttachedProperties\AttachedProperty.cs" />
     <Compile Include="AttachedProperties\AttachedPropertyValue.cs" />
     <Compile Include="AttachedProperties\AttachedSettingsFactory.cs" />
-    <Compile Include="AttachedProperties\ContextAdapter.cs" />
+    <Compile Include="Persistance\ContextAdapter.cs" />
     <Compile Include="AttachedProperties\DbPersistedPropertyValueProvider.cs" />
     <Compile Include="AttachedProperties\IAttachedPropertyContext.cs" />
     <Compile Include="Domain\DefaultExampleConfig.cs" />
     <Compile Include="AttachedProperties\DomainEntity.cs" />
-    <Compile Include="AttachedProperties\PropertyContext.cs" />
+    <Compile Include="Persistance\PropertyContext.cs" />
     <Compile Include="Deserialization\KnownTypeDeserializer.cs" />
     <Compile Include="Deserialization\PropertyValueCannotBeObtainedException.cs" />
     <Compile Include="Deserialization\TypedPropertyDeserializer.cs" />

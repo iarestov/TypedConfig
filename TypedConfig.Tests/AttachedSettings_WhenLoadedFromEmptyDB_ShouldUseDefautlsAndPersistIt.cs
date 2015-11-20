@@ -19,17 +19,14 @@ namespace TypedConfig.Tests
         protected IExampleTypedConfig _config;
         protected DefaultExampleConfig _defaultExampleConfig;
 
-        public override void  SetupEachSpec()
+        protected override void Given()
         {
-             using (var context = new PropertyContext())
+            using (var context = new PropertyContext())
             {
                 context.Database.ExecuteSqlCommand("TRUNCATE TABLE AttachedProperties");
                 context.Database.ExecuteSqlCommand("TRUNCATE TABLE AttachedPropertyValues");
             }
-        }
 
-        protected override void Given()
-        {
             entityId = (new Fixture()).Create<int>();
         }
 
