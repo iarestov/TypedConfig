@@ -84,7 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttachedSettings_WhenLoadedFromDB_ShouldUsePersistedValues.cs" />
     <Compile Include="AttachedSettings_WhenLoadedFromEmptyDB_ShouldUseDefautlsAndPersistIt.cs" />
+    <Compile Include="AttachedSettings_WhenSaving_ShouldPersistValuesInDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

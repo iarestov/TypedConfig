@@ -47,9 +47,9 @@ namespace TypedConfig.AttachedProperties
             if (!_loadedProperties.TryGetValue(property.Id, out propertyValue))
             {
                 LoadValues();
-                return _loadedProperties[property.Id];
             }
 
+            return _loadedProperties[property.Id];
         }
 
         private void LoadValues()
