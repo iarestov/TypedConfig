@@ -1,5 +1,7 @@
 using System;
 using ImpromptuInterface;
+using TypedConfig.Deserialization;
+using TypedConfig.TypedAdapter;
 
 namespace TypedConfig
 {

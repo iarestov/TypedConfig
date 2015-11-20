@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using TypedConfig.Domain;
+using TypedConfig.TypedAdapter;
 
-namespace TypedConfig
+namespace TypedConfig.Deserialization
 {
     public class TypedPropertyDeserializer<T>:IPropertyValueProvider
     {

@@ -1,6 +1,6 @@
-namespace TypedConfig.ExternalSettings
+namespace TypedConfig.AttachedProperties
 {
-    class AttachedProperty
+    public class AttachedProperty
     {
         public int Id { get; set; }
         public string EntityType { get; set; }

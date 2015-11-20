@@ -1,7 +1,8 @@
 using System;
 using System.Net.Mail;
+using TypedConfig.Domain;
 
-namespace TypedConfig
+namespace TypedConfig.Deserialization
 {
     public static class KnownTypeDeserializer
     {

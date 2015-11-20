@@ -1,4 +1,4 @@
-namespace TypedConfig
+namespace TypedConfig.TypedAdapter
 {
     public interface IPropertyValueProvider
     {

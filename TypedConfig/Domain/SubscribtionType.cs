@@ -1,4 +1,4 @@
-﻿namespace TypedConfig
+﻿namespace TypedConfig.Domain
 {
     public enum SubscribtionType
     {
