@@ -1,4 +1,4 @@
-namespace TypedConfig.AttachedProperties
+namespace PersistedAttachedProperties.AttachedProperties
 {
     public class DomainEntity
     {

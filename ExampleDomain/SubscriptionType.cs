@@ -1,4 +1,4 @@
-namespace TypedConfig.Domain
+namespace Domain
 {
     public enum SubscriptionType
     {

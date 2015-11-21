@@ -5,11 +5,11 @@ using System.Reflection;
 using TypedConfig.Deserialization;
 using TypedConfig.TypedAdapter;
 
-namespace TypedConfig.AttachedProperties
+namespace PersistedAttachedProperties.AttachedProperties
 {
     public class DbPersistedPropertyValueProvider<T> : IPropertyValueProvider where T:class
     {
-        private readonly int _id;
+        private readonly int _ownerEntityId;
         private readonly Func<IAttachedPropertyContext> _contextCreator;
         private IDictionary<string, PersistedPropertyInfo> _knownProperties = new Dictionary<string, PersistedPropertyInfo>();
         private IDictionary<int, object> _loadedProperties = new Dictionary<int, object>();
@@ -25,13 +25,20 @@ namespace TypedConfig.AttachedProperties
             public PropertyInfo Info { get; set; }
         }
 
-        public DbPersistedPropertyValueProvider(int id,  Func<IAttachedPropertyContext> contextCreator, Func<object,string> serializer, T defaultValues)
+        public DbPersistedPropertyValueProvider(int ownerEntityId,
+                                                Func<IAttachedPropertyContext> contextCreator, 
+                                                Func<object,string> serializer,
+                                                T defaultValues,
+                                                ITypeDeserializer typeDeserializer)
         {
             _defaultValues = defaultValues;
             _serializer = serializer;
             _contextCreator = contextCreator;
-            _id = id;
-            _typedPropertyDeserializer = new TypedPropertyDeserializer<T>(prop => _loadedSerializedProperties[prop]);
+            _ownerEntityId = ownerEntityId;
+            _typedPropertyDeserializer = new TypedPropertyDeserializer<T>(
+                                                    prop => _loadedSerializedProperties[prop], 
+                                                    typeDeserializer
+                                                    );
         }
 
         public object GetValue(string propertyName)
@@ -65,7 +72,7 @@ namespace TypedConfig.AttachedProperties
 
         private void InitSerializedValues(IAttachedPropertyContext context)
         {
-            _loadedSerializedProperties = context.PropertyValues.Where(p => p.EntityId == _id)
+            _loadedSerializedProperties = context.PropertyValues.Where(p => p.EntityId == _ownerEntityId)
                 .ToDictionary(p => _knownProperties.Values.Single(v => v.Id == p.PropertyId).Info.Name, 
                     p => p.Value);
 
@@ -76,7 +83,7 @@ namespace TypedConfig.AttachedProperties
 
                 var attachedPropertyValue = new AttachedPropertyValue()
                 {
-                    EntityId = _id,
+                    EntityId = _ownerEntityId,
                     PropertyId = propInfo.Id,
                     Value = _serializer.Invoke(prop.GetValue(_defaultValues))
                 };
@@ -103,7 +110,7 @@ namespace TypedConfig.AttachedProperties
                     var p = context.Properties.Add(new AttachedProperty(){EntityType = typeof(T).FullName,
                         Name=prop.Name, 
                         Type=prop.PropertyType.FullName});
-                    //supposing to have id filled by magic
+                    //supposing to have ownerEntityId filled by magic
                     context.Save();
 
                     _knownProperties[prop.Name] = new PersistedPropertyInfo

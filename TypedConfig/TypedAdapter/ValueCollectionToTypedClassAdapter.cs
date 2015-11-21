@@ -2,7 +2,7 @@ using System.Dynamic;
 
 namespace TypedConfig.TypedAdapter
 {
-    public class ValueCollectionToTypedClassAdapter : DynamicObject// where T:class
+    public class ValueCollectionToTypedClassAdapter : DynamicObject
     {
         private readonly IPropertyValueProvider _settingsProvider;
 

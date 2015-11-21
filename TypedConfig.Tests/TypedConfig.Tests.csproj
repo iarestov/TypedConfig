@@ -102,7 +102,6 @@
     <Compile Include="TypedAdapter_WhenFakesType_ShouldProvideValues.cs" />
     <Compile Include="AttachedSettings_WhenLoadedFromDB_ShouldUsePersistedValues.cs" />
     <Compile Include="AttachedSettings_WhenLoadedFromEmptyDB_ShouldUseDefautlsAndPersistIt.cs" />
-    <Compile Include="AttachedSettings_WhenSaving_ShouldPersistValuesInDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -113,6 +112,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -125,6 +125,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExampleDomain\Domain.csproj">
+      <Project>{E80B538F-8F4F-455E-A986-7D731C9E0D2D}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PerformanceSmokeTest\PerformanceSmokeTest.csproj">
+      <Project>{fabfeea4-dc7b-4f0a-94e6-7771cb602846}</Project>
+      <Name>PerformanceSmokeTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PersistedAttachedSettings\PersistedAttachedProperties.csproj">
+      <Project>{EF78303C-10FA-46D7-BDFB-77CB2677DC28}</Project>
+      <Name>PersistedAttachedProperties</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TypedConfig\TypedConfig.csproj">
       <Project>{51EA528A-997A-48A6-939C-CEF68AAF792F}</Project>
       <Name>TypedConfig</Name>

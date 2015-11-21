@@ -1,7 +1,7 @@
 using System;
 using System.Data.Entity;
 
-namespace TypedConfig.AttachedProperties
+namespace PersistedAttachedProperties.AttachedProperties
 {
     public interface IAttachedPropertyContext:IDisposable
     {

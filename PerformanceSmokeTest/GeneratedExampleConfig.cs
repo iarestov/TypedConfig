@@ -1,9 +1,9 @@
 using System;
 using System.Net.Mail;
+using Domain;
 using TypedConfig.Deserialization;
-using TypedConfig.Domain;
 
-namespace TypedConfig
+namespace PerformanceSmokeTest
 {
     public class GeneratedExampleConfig : IExampleTypedConfig
     {

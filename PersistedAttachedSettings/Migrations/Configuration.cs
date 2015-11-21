@@ -1,13 +1,8 @@
-using TypedConfig.AttachedProperties;
-using TypedConfig.Persistance;
+using System.Data.Entity.Migrations;
+using PersistedAttachedProperties.Persistance;
 
-namespace TypedConfig.Migrations
+namespace PersistedAttachedProperties.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     internal sealed class Configuration : DbMigrationsConfiguration<PropertyContext>
     {
         public Configuration()

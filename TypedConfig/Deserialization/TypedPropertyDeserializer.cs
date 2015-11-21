@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
-using TypedConfig.Domain;
 using TypedConfig.TypedAdapter;
 
 namespace TypedConfig.Deserialization
@@ -13,23 +12,18 @@ namespace TypedConfig.Deserialization
 
         private static readonly IDictionary<Type, Func<string, object>> TypeParsers;
         private readonly Func<string, string> _serializedPropertyProvider;
+        private readonly ITypeDeserializer _typeDeserializer;
 
-        public TypedPropertyDeserializer(Func<string,string> serializedPropertyProvider)
+        public TypedPropertyDeserializer(Func<string,string> serializedPropertyProvider,
+                                         ITypeDeserializer typeDeserializer)
         {
+            _typeDeserializer = typeDeserializer;
             _serializedPropertyProvider = serializedPropertyProvider;
         }
 
         static TypedPropertyDeserializer()
         {
             PropertyTypes = typeof(T).GetProperties().ToDictionary(p => p.Name, p => p.PropertyType);
-
-            TypeParsers = new Dictionary<Type, Func<string, object>>
-            {
-                {typeof(decimal), s => KnownTypeDeserializer.GetDecimal(s)},
-                {typeof(string), s => s},
-                {typeof(SubscriptionType), s => KnownTypeDeserializer.GetSubscriptionType(s)},
-                {typeof(MailAddress), KnownTypeDeserializer.GetMailAddress},
-            };
         }
 
         public object GetValue(string propertyName)
@@ -43,7 +37,7 @@ namespace TypedConfig.Deserialization
                 throw new UnregisteredPropertyExcepiton(propertyName);
             }
 
-            if (!TypeParsers.TryGetValue(propertyType, out parser))
+            if (!_typeDeserializer.CanDeserialize(propertyType))
             {
                 throw new UnregisteredTypeDesirializerExcepiton(propertyName, propertyType);
             }
@@ -59,7 +53,7 @@ namespace TypedConfig.Deserialization
 
             try
             {
-                return parser.Invoke(settingSerializedValue);
+                return _typeDeserializer.Deserialize(propertyType,settingSerializedValue);
             }
             catch (Exception ex)
             {

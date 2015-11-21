@@ -1,11 +1,11 @@
 using System.Net.Mail;
 using System.Reflection;
+using Domain;
 using NUnit.Framework;
+using PersistedAttachedProperties.AttachedProperties;
+using PersistedAttachedProperties.Persistance;
 using Ploeh.AutoFixture;
 using SpecsFor;
-using TypedConfig.AttachedProperties;
-using TypedConfig.Domain;
-using TypedConfig.Persistance;
 
 namespace TypedConfig.Tests
 {
@@ -32,13 +32,18 @@ namespace TypedConfig.Tests
             var fixture = (new Fixture());
             _existingConfig = fixture.Create<ConfigGeneratorDummy>();
 
+            PersistExistingConfig();
+        }
+
+        private void PersistExistingConfig()
+        {
             using (var context = new PropertyContext())
             {
-                foreach (var prop in typeof(IExampleTypedConfig).GetProperties(BindingFlags.Instance | BindingFlags.Public))
+                foreach (var prop in typeof (IExampleTypedConfig).GetProperties(BindingFlags.Instance | BindingFlags.Public))
                 {
-                    var p =  context.DomainEntityAttachedProperties.Add(new AttachedProperty()
+                    var p = context.DomainEntityAttachedProperties.Add(new AttachedProperty()
                     {
-                        EntityType = typeof(IExampleTypedConfig).FullName,
+                        EntityType = typeof (IExampleTypedConfig).FullName,
                         Name = prop.Name,
                         Type = prop.PropertyType.FullName
                     });
@@ -47,27 +52,26 @@ namespace TypedConfig.Tests
 
                     context.DomainEntityAttachedPropertyValues.Add(new AttachedPropertyValue()
                     {
-                        EntityId = entityId,
+                        EntityId = EntityId,
                         PropertyId = p.Id,
                         Value = prop.GetValue(_existingConfig).ToString()
                     });
 
                     context.SaveChanges();
                 }
-
             }
         }
 
         [Test]
         public void Then_FirstName_is_taken_from_persisted_storage()
         {
-            Assert.AreEqual(_existingConfig.FirstName, _config.FirstName);
+            Assert.AreEqual(_existingConfig.FirstName, Config.FirstName);
         }
 
         [Test]
         public void Then_Mail_is_taken_from_persisted_storage()
         {
-            Assert.AreEqual(_existingConfig.CustomerMail, _config.CustomerMail);
+            Assert.AreEqual(_existingConfig.CustomerMail, Config.CustomerMail);
         }
     }
 }

@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TypedConfig.Domain;
+using Domain;
 
-namespace TypedConfig
+namespace PerformanceSmokeTest
 {
     class Program
     {
@@ -28,7 +26,7 @@ namespace TypedConfig
             var settings = new []
             {
                 new GeneratedExampleConfig(settingGetter),
-                TypedConfig.Create<IExampleTypedConfig>(settingGetter)
+                TypedConfig.Create<IExampleTypedConfig>(settingGetter, new KnownTypeDeserializer())
             };
 
             foreach (var setting in settings)

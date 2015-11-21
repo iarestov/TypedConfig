@@ -1,6 +1,6 @@
 using System.Net.Mail;
 
-namespace TypedConfig.Domain
+namespace Domain
 {
     public class DefaultExampleConfig : IExampleTypedConfig
     {

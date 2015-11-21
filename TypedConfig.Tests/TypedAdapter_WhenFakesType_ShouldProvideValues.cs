@@ -42,7 +42,7 @@ namespace TypedConfig.Tests
             GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("StringValue")).Returns(_testValues.StringValue);
             GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("DecValue")).Returns(_testValues.DecValue);
             GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("MailValue")).Returns(_testValues.MailValue);
-            GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("ObjValue")).Returns(_testValues.ObjValue);
+           // GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("ObjValue")).Returns(_testValues.ObjValue);
         }
 
         protected override void When()
@@ -56,12 +56,12 @@ namespace TypedConfig.Tests
             Assert.AreEqual(_testValues.StringValue, _fakedClass.StringValue);
         }
 
-        [Test]
-        public void ObjValue_Should_be_provided()
-        {
-            var objValue = _fakedClass.ObjValue;
-            Assert.AreEqual(_testValues.ObjValue, objValue);
-        }
+        //[Test]
+        //public void ObjValue_Should_be_provided()
+        //{
+        //    var objValue = _fakedClass.ObjValue;
+        //    Assert.AreEqual(_testValues.ObjValue, objValue);
+        //}
 
         [Test]
         public void MailValue_Should_be_provided()

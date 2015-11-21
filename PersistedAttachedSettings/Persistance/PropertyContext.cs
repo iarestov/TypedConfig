@@ -1,7 +1,8 @@
+using System;
 using System.Data.Entity;
-using TypedConfig.AttachedProperties;
+using PersistedAttachedProperties.AttachedProperties;
 
-namespace TypedConfig.Persistance
+namespace PersistedAttachedProperties.Persistance
 {
     public class PropertyContext : DbContext
     {
@@ -12,6 +13,6 @@ namespace TypedConfig.Persistance
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new PropertyValuesConfiguration());
-        } 
+        }
     }
 }

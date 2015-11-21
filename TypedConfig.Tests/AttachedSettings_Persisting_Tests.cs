@@ -1,16 +1,17 @@
+using Domain;
+using PerformanceSmokeTest;
+using PersistedAttachedProperties.AttachedProperties;
+using PersistedAttachedProperties.Persistance;
 using Ploeh.AutoFixture;
 using SpecsFor;
-using TypedConfig.AttachedProperties;
-using TypedConfig.Domain;
-using TypedConfig.Persistance;
 
 namespace TypedConfig.Tests
 {
     public class AttachedSettings_Persisting_Tests : SpecsFor<AttachedSettingsFactory<IExampleTypedConfig>>
     {
-        protected int entityId;
-        protected IExampleTypedConfig _config;
-        protected DefaultExampleConfig _defaultExampleConfig;
+        protected int EntityId;
+        protected IExampleTypedConfig Config;
+        protected DefaultExampleConfig DefaultExampleConfig;
 
         protected override void Given()
         {
@@ -20,15 +21,16 @@ namespace TypedConfig.Tests
                 context.Database.ExecuteSqlCommand("TRUNCATE TABLE AttachedPropertyValues");
             }
 
-            entityId = (new Fixture()).Create<int>();
+            EntityId = (new Fixture()).Create<int>();
         }
 
         protected override void When()
         {
-            _defaultExampleConfig = new DefaultExampleConfig();
-            _config = SUT.Create(entityId,
-                _defaultExampleConfig,
-                () => new ContextAdapter(new PropertyContext()));
+            DefaultExampleConfig = new DefaultExampleConfig();
+            Config = SUT.Create(EntityId,
+                DefaultExampleConfig,
+                () => new ContextAdapter(new PropertyContext()),
+                new KnownTypeDeserializer());
         }
 
     }

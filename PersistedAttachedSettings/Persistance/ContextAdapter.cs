@@ -1,7 +1,7 @@
 using System.Data.Entity;
-using TypedConfig.AttachedProperties;
+using PersistedAttachedProperties.AttachedProperties;
 
-namespace TypedConfig.Persistance
+namespace PersistedAttachedProperties.Persistance
 {
     public class ContextAdapter : IAttachedPropertyContext
     {

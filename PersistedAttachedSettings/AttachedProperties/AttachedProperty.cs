@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TypedConfig.AttachedProperties
+namespace PersistedAttachedProperties.AttachedProperties
 {
     public class AttachedProperty
     {
