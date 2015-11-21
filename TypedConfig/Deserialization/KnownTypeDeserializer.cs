@@ -17,9 +17,9 @@ namespace TypedConfig.Deserialization
 
         }
 
-        public static SubscribtionType GetSubscribtionType(string value)
+        public static SubscriptionType GetSubscriptionType(string value)
         {
-            return (SubscribtionType)Enum.Parse(typeof(SubscribtionType), value);
+            return (SubscriptionType)Enum.Parse(typeof(SubscriptionType), value);
         }
     }
 }

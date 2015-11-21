@@ -6,7 +6,6 @@ namespace TypedConfig.Deserialization
     {
         public UnregisteredTypeDesirializerExcepiton(string propertyName, Type propertyType)
         {
-            throw new NotImplementedException();
         }
     }
 }

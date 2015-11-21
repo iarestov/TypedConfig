@@ -5,11 +5,11 @@ using TypedConfig.Domain;
 
 namespace TypedConfig
 {
-    public class GeneratedDomainRelatedConfig : IDomainRelatedConfig
+    public class GeneratedExampleConfig : IExampleTypedConfig
     {
         private readonly Func<string, string> _configProvider;
 
-        public GeneratedDomainRelatedConfig(Func<string,string> configProvider)
+        public GeneratedExampleConfig(Func<string,string> configProvider)
         {
             _configProvider = configProvider;
         }
@@ -41,9 +41,9 @@ namespace TypedConfig
         {
             get { return KnownTypeDeserializer.GetMailAddress(_configProvider.Invoke("CustomerMail")); }
         }
-        public SubscribtionType Subscription
+        public SubscriptionType Subscription
         {
-            get { return KnownTypeDeserializer.GetSubscribtionType(_configProvider.Invoke("Subscription")); }
+            get { return KnownTypeDeserializer.GetSubscriptionType(_configProvider.Invoke("Subscription")); }
         }
     }
 }

@@ -27,7 +27,7 @@ namespace TypedConfig.Deserialization
             {
                 {typeof(decimal), s => KnownTypeDeserializer.GetDecimal(s)},
                 {typeof(string), s => s},
-                {typeof(SubscribtionType), s => KnownTypeDeserializer.GetSubscribtionType(s)},
+                {typeof(SubscriptionType), s => KnownTypeDeserializer.GetSubscriptionType(s)},
                 {typeof(MailAddress), KnownTypeDeserializer.GetMailAddress},
             };
         }

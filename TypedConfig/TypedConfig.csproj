@@ -77,23 +77,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExternalSettings\AttachedPropsSet.cs" />
-    <Compile Include="ExternalSettings\AttachedProperty.cs" />
-    <Compile Include="ExternalSettings\AttachedPropertyValue.cs" />
-    <Compile Include="Domain\PropertyContext.cs" />
-    <Compile Include="GeneratedDomainRelatedConfig.cs" />
-    <Compile Include="Domain\IDomainRelatedConfig.cs" />
-    <Compile Include="TypedAdapter\IPropertyValueProvider.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Deserialization\KnownTypeDeserializer.cs" />
-    <Compile Include="Deserialization\PropertyValueCannotBeObtainedException.cs" />
-    <Compile Include="TypedConfig.cs" />
-    <Compile Include="Deserialization\TypedPropertyDeserializer.cs" />
-    <Compile Include="Deserialization\UnregisteredPropertyExcepiton.cs" />
+    <Compile Include="AttachedProperties\AttachedProperty.cs" />
+    <Compile Include="AttachedProperties\AttachedPropertyValue.cs" />
+    <Compile Include="AttachedProperties\AttachedSettingsFactory.cs" />
     <Compile Include="Deserialization\UnregisteredTypeDesirializerExcepiton.cs" />
     <Compile Include="Deserialization\ValueDeserializationException.cs" />
-    <Compile Include="Domain\SubscribtionType.cs" />
+    <Compile Include="Domain\SubscriptionType.cs" />
+    <Compile Include="Persistance\ContextAdapter.cs" />
+    <Compile Include="AttachedProperties\DbPersistedPropertyValueProvider.cs" />
+    <Compile Include="AttachedProperties\IAttachedPropertyContext.cs" />
+    <Compile Include="Domain\DefaultExampleConfig.cs" />
+    <Compile Include="AttachedProperties\DomainEntity.cs" />
+    <Compile Include="Persistance\PropertyContext.cs" />
+    <Compile Include="Deserialization\KnownTypeDeserializer.cs" />
+    <Compile Include="Deserialization\PropertyValueCannotBeObtainedException.cs" />
+    <Compile Include="Deserialization\TypedPropertyDeserializer.cs" />
+    <Compile Include="Deserialization\UnregisteredPropertyExcepiton.cs" />
+    <Compile Include="Domain\IExampleTypedConfig.cs" />
+    <Compile Include="GeneratedExampleConfig.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistance\PropertyValuesConfiguration.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypedAdapter\FlatValuesToTypedClassAdapter.cs" />
+    <Compile Include="TypedAdapter\IPropertyValueProvider.cs" />
+    <Compile Include="TypedConfig.cs" />
     <Compile Include="TypedAdapter\ValueCollectionToTypedClassAdapter.cs" />
   </ItemGroup>
   <ItemGroup>

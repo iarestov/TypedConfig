@@ -27,8 +27,8 @@ namespace TypedConfig
             Func<string, string> settingGetter = s => ConfigValuesFromAnySource[s];
             var settings = new []
             {
-                new GeneratedDomainRelatedConfig(settingGetter),
-                TypedConfig.Create<IDomainRelatedConfig>(settingGetter)
+                new GeneratedExampleConfig(settingGetter),
+                TypedConfig.Create<IExampleTypedConfig>(settingGetter)
             };
 
             foreach (var setting in settings)
@@ -38,7 +38,7 @@ namespace TypedConfig
                 var start = MeasureAccessTime(setting, 5).TotalMilliseconds;
                 Console.WriteLine("Started in {0} milliseconds",start);
                 Console.WriteLine();
-                var work = MeasureAccessTime(setting, 10000000).TotalMilliseconds;
+                var work = MeasureAccessTime(setting, 1000000).TotalMilliseconds;
                 Console.WriteLine("Finished work in {0} milliseconds",work);
                 Console.WriteLine();
             }
@@ -46,7 +46,7 @@ namespace TypedConfig
             Console.ReadKey();
         }
 
-        private static TimeSpan MeasureAccessTime(IDomainRelatedConfig config, int count)
+        private static TimeSpan MeasureAccessTime(IExampleTypedConfig config, int count)
         {
             var watch = new Stopwatch();
             watch.Start();
