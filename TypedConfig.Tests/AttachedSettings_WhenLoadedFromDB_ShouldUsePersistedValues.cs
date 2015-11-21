@@ -5,24 +5,23 @@ using NUnit.Framework;
 using PersistedAttachedProperties.AttachedProperties;
 using PersistedAttachedProperties.Persistance;
 using Ploeh.AutoFixture;
-using SpecsFor;
 
 namespace TypedConfig.Tests
 {
     [TestFixture]
-    public class AttachedSettings_WhenLoadedFromDB_ShouldUsePersistedValues:AttachedSettings_Persisting_Tests 
+    public class AttachedSettings_WhenLoadedFromDB_ShouldUsePersistedValues : AttachedSettings_Persisting_Tests
     {
         private ConfigGeneratorDummy _existingConfig;
 
-        class ConfigGeneratorDummy : IExampleTypedConfig
+        private class ConfigGeneratorDummy : IExampleTypedConfig
         {
-            public string FirstName { get;  set; }
-            public string LastName { get;  set; }
-            public string MiddleName { get;  set; }
-            public decimal MounthlyFee { get;  set; }
-            public decimal Balance { get;  set; }
-            public MailAddress CustomerMail { get;  set; }
-            public SubscriptionType Subscription { get;  set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string MiddleName { get; set; }
+            public decimal MounthlyFee { get; set; }
+            public decimal Balance { get; set; }
+            public MailAddress CustomerMail { get; set; }
+            public SubscriptionType Subscription { get; set; }
         }
 
         protected override void Given()
@@ -39,9 +38,10 @@ namespace TypedConfig.Tests
         {
             using (var context = new PropertyContext())
             {
-                foreach (var prop in typeof (IExampleTypedConfig).GetProperties(BindingFlags.Instance | BindingFlags.Public))
+                foreach (
+                    var prop in typeof (IExampleTypedConfig).GetProperties(BindingFlags.Instance | BindingFlags.Public))
                 {
-                    var p = context.DomainEntityAttachedProperties.Add(new AttachedProperty()
+                    var p = context.DomainEntityAttachedProperties.Add(new AttachedProperty
                     {
                         EntityType = typeof (IExampleTypedConfig).FullName,
                         Name = prop.Name,
@@ -50,7 +50,7 @@ namespace TypedConfig.Tests
 
                     context.SaveChanges();
 
-                    context.DomainEntityAttachedPropertyValues.Add(new AttachedPropertyValue()
+                    context.DomainEntityAttachedPropertyValues.Add(new AttachedPropertyValue
                     {
                         EntityId = EntityId,
                         PropertyId = p.Id,

@@ -6,7 +6,6 @@ namespace TypedConfig.Deserialization
     {
         public PropertyValueCannotBeObtainedException(string name, Exception exception)
         {
-            
         }
     }
 }

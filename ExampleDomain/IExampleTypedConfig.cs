@@ -8,7 +8,7 @@ namespace Domain
         string LastName { get; }
         string MiddleName { get; }
         decimal MounthlyFee { get; }
-        decimal Balance { get; }  
+        decimal Balance { get; }
         MailAddress CustomerMail { get; }
         SubscriptionType Subscription { get; }
     }

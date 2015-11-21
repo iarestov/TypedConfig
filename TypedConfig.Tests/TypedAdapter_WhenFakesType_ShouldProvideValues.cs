@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
-using ExpectedObjects;
+﻿using System.Net.Mail;
 using ImpromptuInterface;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
-using Should;
 using SpecsFor;
 using TypedConfig.TypedAdapter;
 
 namespace TypedConfig.Tests
 {
     [TestFixture]
-    public class TypedAdapter_WhenFakesType_ShouldProvideValues:SpecsFor<ValueCollectionToTypedClassAdapter>
+    public class TypedAdapter_WhenFakesType_ShouldProvideValues : SpecsFor<ValueCollectionToTypedClassAdapter>
     {
         private ITestTypedInterface _fakedClass;
         private TestTypedClass _testValues;
@@ -28,7 +21,7 @@ namespace TypedConfig.Tests
             object ObjValue { get; }
         }
 
-        class TestTypedClass:ITestTypedInterface
+        private class TestTypedClass : ITestTypedInterface
         {
             public string StringValue { get; set; }
             public decimal DecValue { get; set; }
@@ -42,7 +35,7 @@ namespace TypedConfig.Tests
             GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("StringValue")).Returns(_testValues.StringValue);
             GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("DecValue")).Returns(_testValues.DecValue);
             GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("MailValue")).Returns(_testValues.MailValue);
-           // GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("ObjValue")).Returns(_testValues.ObjValue);
+            // GetMockFor<IPropertyValueProvider>().Setup(p => p.GetValue("ObjValue")).Returns(_testValues.ObjValue);
         }
 
         protected override void When()
@@ -51,9 +44,9 @@ namespace TypedConfig.Tests
         }
 
         [Test]
-        public void StringValue_Should_be_provided()
+        public void DecimalValue_Should_be_provided()
         {
-            Assert.AreEqual(_testValues.StringValue, _fakedClass.StringValue);
+            Assert.AreEqual(_testValues.DecValue, _fakedClass.DecValue);
         }
 
         //[Test]
@@ -70,11 +63,9 @@ namespace TypedConfig.Tests
         }
 
         [Test]
-        public void DecimalValue_Should_be_provided()
+        public void StringValue_Should_be_provided()
         {
-            Assert.AreEqual(_testValues.DecValue, _fakedClass.DecValue);
+            Assert.AreEqual(_testValues.StringValue, _fakedClass.StringValue);
         }
     }
-
-
 }

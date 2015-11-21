@@ -6,20 +6,30 @@ using TypedConfig.Deserialization;
 
 namespace PerformanceSmokeTest
 {
-    public class KnownTypeDeserializer: ITypeDeserializer
+    public class KnownTypeDeserializer : ITypeDeserializer
     {
-        static KnownTypeDeserializer ()
+        static KnownTypeDeserializer()
         {
             TypeParsers = new Dictionary<Type, Func<string, object>>
             {
-                {typeof(decimal), s => KnownTypeDeserializer.GetDecimal(s)},
-                {typeof(string), s => s},
-                {typeof(SubscriptionType), s => KnownTypeDeserializer.GetSubscriptionType(s)},
-                {typeof(MailAddress), KnownTypeDeserializer.GetMailAddress},
+                {typeof (decimal), s => GetDecimal(s)},
+                {typeof (string), s => s},
+                {typeof (SubscriptionType), s => GetSubscriptionType(s)},
+                {typeof (MailAddress), GetMailAddress}
             };
         }
 
-        private static Dictionary<Type, Func<string, object>> TypeParsers { get; set; }
+        private static Dictionary<Type, Func<string, object>> TypeParsers { get; }
+
+        public object Deserialize(Type type, string value)
+        {
+            return TypeParsers[type].Invoke(value);
+        }
+
+        public bool CanDeserialize(Type type)
+        {
+            return TypeParsers.ContainsKey(type);
+        }
 
         public static decimal GetDecimal(string value)
         {
@@ -33,17 +43,7 @@ namespace PerformanceSmokeTest
 
         public static SubscriptionType GetSubscriptionType(string value)
         {
-            return (SubscriptionType)Enum.Parse(typeof(SubscriptionType), value);
-        }
-
-        public object Deserialize(Type type, string value)
-        {
-            return TypeParsers[type].Invoke(value);
-        }
-
-        public bool CanDeserialize(Type type)
-        {
-            return TypeParsers.ContainsKey(type);
+            return (SubscriptionType) Enum.Parse(typeof (SubscriptionType), value);
         }
     }
 }

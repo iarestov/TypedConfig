@@ -6,10 +6,10 @@ using Domain;
 
 namespace PerformanceSmokeTest
 {
-    class Program
+    internal class Program
     {
         private static readonly IDictionary<string, string> ConfigValuesFromAnySource =
-            new Dictionary<string, string>()
+            new Dictionary<string, string>
             {
                 {"FirstName", "test first name"},
                 {"LastName", "test last name"},
@@ -20,10 +20,10 @@ namespace PerformanceSmokeTest
                 {"Subscription", "Small"}
             };
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Func<string, string> settingGetter = s => ConfigValuesFromAnySource[s];
-            var settings = new []
+            var settings = new[]
             {
                 new GeneratedExampleConfig(settingGetter),
                 TypedConfig.Create<IExampleTypedConfig>(settingGetter, new KnownTypeDeserializer())
@@ -34,10 +34,10 @@ namespace PerformanceSmokeTest
                 Console.WriteLine("Starting " + setting.GetType().Name);
                 Console.WriteLine();
                 var start = MeasureAccessTime(setting, 5).TotalMilliseconds;
-                Console.WriteLine("Started in {0} milliseconds",start);
+                Console.WriteLine("Started in {0} milliseconds", start);
                 Console.WriteLine();
                 var work = MeasureAccessTime(setting, 1000000).TotalMilliseconds;
-                Console.WriteLine("Finished work in {0} milliseconds",work);
+                Console.WriteLine("Finished work in {0} milliseconds", work);
                 Console.WriteLine();
             }
 
@@ -48,7 +48,7 @@ namespace PerformanceSmokeTest
         {
             var watch = new Stopwatch();
             watch.Start();
-            foreach (var num in Enumerable.Range(0,count))
+            foreach (var num in Enumerable.Range(0, count))
             {
                 var a = config.Balance;
                 var b = config.CustomerMail;

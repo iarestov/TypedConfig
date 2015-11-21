@@ -4,6 +4,6 @@ namespace Domain
     {
         Free,
         Small,
-        Big  
+        Big
     }
 }

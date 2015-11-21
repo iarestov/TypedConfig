@@ -1,29 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using TypedConfig.TypedAdapter;
 
 namespace TypedConfig.Deserialization
 {
-    public class TypedPropertyDeserializer<T>:IPropertyValueProvider
+    public class TypedPropertyDeserializer<T> : IPropertyValueProvider
     {
         private static readonly IDictionary<string, Type> PropertyTypes;
-
         private static readonly IDictionary<Type, Func<string, object>> TypeParsers;
         private readonly Func<string, string> _serializedPropertyProvider;
         private readonly ITypeDeserializer _typeDeserializer;
 
-        public TypedPropertyDeserializer(Func<string,string> serializedPropertyProvider,
-                                         ITypeDeserializer typeDeserializer)
+        static TypedPropertyDeserializer()
+        {
+            PropertyTypes = typeof (T).GetProperties().ToDictionary(p => p.Name, p => p.PropertyType);
+        }
+
+        public TypedPropertyDeserializer(Func<string, string> serializedPropertyProvider,
+            ITypeDeserializer typeDeserializer)
         {
             _typeDeserializer = typeDeserializer;
             _serializedPropertyProvider = serializedPropertyProvider;
-        }
-
-        static TypedPropertyDeserializer()
-        {
-            PropertyTypes = typeof(T).GetProperties().ToDictionary(p => p.Name, p => p.PropertyType);
         }
 
         public object GetValue(string propertyName)
@@ -53,7 +51,7 @@ namespace TypedConfig.Deserialization
 
             try
             {
-                return _typeDeserializer.Deserialize(propertyType,settingSerializedValue);
+                return _typeDeserializer.Deserialize(propertyType, settingSerializedValue);
             }
             catch (Exception ex)
             {

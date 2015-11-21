@@ -32,6 +32,5 @@ namespace TypedConfig.Tests
                 () => new ContextAdapter(new PropertyContext()),
                 new KnownTypeDeserializer());
         }
-
     }
 }
