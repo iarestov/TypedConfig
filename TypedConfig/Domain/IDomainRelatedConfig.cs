@@ -1,8 +1,8 @@
 using System.Net.Mail;
 
-namespace TypedConfig
+namespace TypedConfig.Domain
 {
-    public interface IExampleTypedConfig
+    public interface IDomainRelatedConfig
     {
         string FirstName { get; }
         string LastName { get; }

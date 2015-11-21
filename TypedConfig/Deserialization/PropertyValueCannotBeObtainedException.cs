@@ -1,10 +1,10 @@
 using System;
 
-namespace TypedConfig
+namespace TypedConfig.Deserialization
 {
-    public class PropertyCannotBeFoundException : Exception
+    public class PropertyValueCannotBeObtainedException : Exception
     {
-        public PropertyCannotBeFoundException(string name, Exception exception)
+        public PropertyValueCannotBeObtainedException(string name, Exception exception)
         {
             
         }

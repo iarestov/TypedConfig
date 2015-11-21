@@ -1,6 +1,6 @@
 using System;
 
-namespace TypedConfig
+namespace TypedConfig.Deserialization
 {
     public class UnregisteredTypeDesirializerExcepiton : Exception
     {

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TypedConfig.Domain;
 
 namespace TypedConfig
 {
@@ -26,8 +27,8 @@ namespace TypedConfig
             Func<string, string> settingGetter = s => ConfigValuesFromAnySource[s];
             var settings = new []
             {
-                new GeneratedExampleTypedConfig(settingGetter),
-                TypedConfig.Create<IExampleTypedConfig>(settingGetter)
+                new GeneratedDomainRelatedConfig(settingGetter),
+                TypedConfig.Create<IDomainRelatedConfig>(settingGetter)
             };
 
             foreach (var setting in settings)
@@ -45,7 +46,7 @@ namespace TypedConfig
             Console.ReadKey();
         }
 
-        private static TimeSpan MeasureAccessTime(IExampleTypedConfig config, int count)
+        private static TimeSpan MeasureAccessTime(IDomainRelatedConfig config, int count)
         {
             var watch = new Stopwatch();
             watch.Start();
