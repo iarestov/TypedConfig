@@ -8,7 +8,7 @@ namespace TypedConfig.Deserialization
     public class TypedPropertyDeserializer<T> : IPropertyValueProvider
     {
         private static readonly IDictionary<string, Type> PropertyTypes;
-        private static readonly IDictionary<Type, Func<string, object>> TypeParsers;
+        //private static readonly IDictionary<Type, Func<string, object>> TypeParsers;
         private readonly Func<string, string> _serializedPropertyProvider;
         private readonly ITypeDeserializer _typeDeserializer;
 
@@ -29,7 +29,7 @@ namespace TypedConfig.Deserialization
             string settingSerializedValue;
 
             Type propertyType;
-            Func<string, object> parser;
+            //Func<string, object> parser;
             if (!PropertyTypes.TryGetValue(propertyName, out propertyType))
             {
                 throw new UnregisteredPropertyExcepiton(propertyName);

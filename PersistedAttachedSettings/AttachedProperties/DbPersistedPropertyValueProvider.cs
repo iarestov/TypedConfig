@@ -93,19 +93,22 @@ namespace PersistedAttachedProperties.AttachedProperties
         {
             using (var context = _contextCreator.Invoke())
             {
-                _knownProperties = context.Properties.Where(p => p.EntityType == typeof (T).FullName)
+                var type = typeof (T);
+                var typeFullName = type.FullName;
+
+                _knownProperties = context.Properties.Where(p => p.EntityType == typeFullName)
                     .ToDictionary(p => p.Name, p => new PersistedPropertyInfo
                     {
                         Id = p.Id,
-                        Info = typeof (T).GetProperty(p.Name)
+                        Info = type.GetProperty(p.Name)
                     });
 
-                foreach (var prop in typeof (T).GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                foreach (var prop in type.GetProperties(BindingFlags.Instance | BindingFlags.Public)
                     .Where(prop => !_knownProperties.ContainsKey(prop.Name)))
                 {
                     var p = context.Properties.Add(new AttachedProperty
                     {
-                        EntityType = typeof (T).FullName,
+                        EntityType = typeFullName,
                         Name = prop.Name,
                         Type = prop.PropertyType.FullName
                     });
@@ -115,7 +118,7 @@ namespace PersistedAttachedProperties.AttachedProperties
                     _knownProperties[prop.Name] = new PersistedPropertyInfo
                     {
                         Id = p.Id,
-                        Info = typeof (T).GetProperty(p.Name)
+                        Info = prop
                     };
                 }
             }

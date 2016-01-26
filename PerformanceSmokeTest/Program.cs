@@ -25,6 +25,7 @@ namespace PerformanceSmokeTest
             Func<string, string> settingGetter = s => ConfigValuesFromAnySource[s];
             var settings = new[]
             {
+                new DefaultExampleConfig(), 
                 new GeneratedExampleConfig(settingGetter),
                 TypedConfig.Create<IExampleTypedConfig>(settingGetter, new KnownTypeDeserializer())
             };

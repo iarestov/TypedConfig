@@ -19,7 +19,7 @@ namespace PerformanceSmokeTest
             };
         }
 
-        private static Dictionary<Type, Func<string, object>> TypeParsers { get; }
+        private static Dictionary<Type, Func<string, object>> TypeParsers { get; set; }
 
         public object Deserialize(Type type, string value)
         {
