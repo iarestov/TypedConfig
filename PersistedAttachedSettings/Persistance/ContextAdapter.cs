@@ -22,9 +22,9 @@ namespace PersistedAttachedProperties.Persistance
             get { return _context.Set<AttachedProperty>(); }
         }
 
-        public IDbSet<AttachedPropertyValue> PropertyValues
+        public IDbSet<AttachedPropertyValue<T>> GetPropertyValues<T>()
         {
-            get { return _context.Set<AttachedPropertyValue>(); }
+            return _context.Set<AttachedPropertyValue<T>>();
         }
 
         public void Save()

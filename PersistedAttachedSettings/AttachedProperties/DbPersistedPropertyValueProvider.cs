@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using TypedConfig.Deserialization;
@@ -7,11 +9,13 @@ using TypedConfig.TypedAdapter;
 
 namespace PersistedAttachedProperties.AttachedProperties
 {
-    public class DbPersistedPropertyValueProvider<T> : IPropertyValueProvider where T : class
+    public class DbPersistedPropertyValueProvider<T, TKey> : IPropertyValueProvider 
+        where T : class
+        where TKey : struct, IComparable<TKey>
     {
         private readonly Func<IAttachedPropertyContext> _contextCreator;
         private readonly T _defaultValues;
-        private readonly int _ownerEntityId;
+        private readonly TKey _ownerEntityId;
         private readonly Func<object, string> _serializer;
         private readonly TypedPropertyDeserializer<T> _typedPropertyDeserializer;
 
@@ -21,7 +25,7 @@ namespace PersistedAttachedProperties.AttachedProperties
         private IDictionary<int, object> _loadedProperties = new Dictionary<int, object>();
         private IDictionary<string, string> _loadedSerializedProperties = new Dictionary<string, string>();
 
-        public DbPersistedPropertyValueProvider(int ownerEntityId,
+        public DbPersistedPropertyValueProvider(TKey ownerEntityId,
             Func<IAttachedPropertyContext> contextCreator,
             Func<object, string> serializer,
             T defaultValues,
@@ -67,7 +71,8 @@ namespace PersistedAttachedProperties.AttachedProperties
 
         private void InitSerializedValues(IAttachedPropertyContext context)
         {
-            _loadedSerializedProperties = context.PropertyValues.Where(p => p.EntityId == _ownerEntityId)
+            var typedTable = context.GetPropertyValues<TKey>();
+            _loadedSerializedProperties = typedTable.Where(p => p.EntityId.CompareTo(_ownerEntityId) == 0)
                 .ToDictionary(p => _knownProperties.Values.Single(v => v.Id == p.PropertyId).Info.Name,
                     p => p.Value);
 
@@ -76,13 +81,13 @@ namespace PersistedAttachedProperties.AttachedProperties
             {
                 var propInfo = _knownProperties[prop.Name];
 
-                var attachedPropertyValue = new AttachedPropertyValue
+                var attachedPropertyValue = new AttachedPropertyValue<TKey>
                 {
                     EntityId = _ownerEntityId,
                     PropertyId = propInfo.Id,
                     Value = _serializer.Invoke(prop.GetValue(_defaultValues))
                 };
-                var p = context.PropertyValues.Add(attachedPropertyValue);
+                var p = typedTable.Add(attachedPropertyValue);
                 context.Save();
 
                 _loadedSerializedProperties[prop.Name] = attachedPropertyValue.Value;

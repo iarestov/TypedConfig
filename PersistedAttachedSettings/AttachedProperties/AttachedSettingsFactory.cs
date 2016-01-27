@@ -5,14 +5,15 @@ using TypedConfig.TypedAdapter;
 
 namespace PersistedAttachedProperties.AttachedProperties
 {
-    public class AttachedSettingsFactory<TConfigType> where TConfigType : class
+    public class AttachedSettingsFactory<TConfigType, TKey> where TConfigType : class
+        where TKey : struct, IComparable<TKey>
     {
-        public TConfigType Create(int entityId,
+        public TConfigType Create(TKey entityId,
             TConfigType defaults,
             Func<IAttachedPropertyContext> propertyInfos,
             ITypeDeserializer typeDeserializer)
         {
-            var valueProvider = new DbPersistedPropertyValueProvider<TConfigType>(entityId, propertyInfos,
+            var valueProvider = new DbPersistedPropertyValueProvider<TConfigType, TKey>(entityId, propertyInfos,
                 //consider provide proper serializer implementation
                 o => o.ToString(),
                 defaults,

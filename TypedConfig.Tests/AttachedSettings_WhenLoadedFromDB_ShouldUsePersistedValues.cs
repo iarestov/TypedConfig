@@ -50,7 +50,7 @@ namespace TypedConfig.Tests
 
                     context.SaveChanges();
 
-                    context.DomainEntityAttachedPropertyValues.Add(new AttachedPropertyValue
+                    context.DomainEntityAttachedPropertyValuesInt.Add(new AttachedPropertyValue<int>
                     {
                         EntityId = EntityId,
                         PropertyId = p.Id,

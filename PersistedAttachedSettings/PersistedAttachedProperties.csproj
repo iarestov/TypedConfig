@@ -65,8 +65,10 @@
     <Compile Include="AttachedProperties\DomainEntity.cs" />
     <Compile Include="AttachedProperties\IAttachedPropertyContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistance\Constants.cs" />
     <Compile Include="Persistance\ContextAdapter.cs" />
     <Compile Include="Persistance\PropertyContext.cs" />
+    <Compile Include="Persistance\PropertyConfiguration.cs" />
     <Compile Include="Persistance\PropertyValuesConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
