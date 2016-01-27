@@ -10,7 +10,7 @@ namespace PersistedAttachedProperties.AttachedProperties
     {
         public TConfigType Create(TKey entityId,
             TConfigType defaults,
-            Func<IAttachedPropertyContext> propertyInfos,
+            Func<IAttachedPropertyContext<TKey>> propertyInfos,
             ITypeDeserializer typeDeserializer)
         {
             var valueProvider = new DbPersistedPropertyValueProvider<TConfigType, TKey>(entityId, propertyInfos,
