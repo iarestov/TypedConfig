@@ -7,7 +7,7 @@ namespace PersistedAttachedProperties.Persistance
     public abstract class PropertyValuesConfigurationBase<T> : EntityTypeConfiguration<AttachedPropertyValue<T>>
         where T : struct
     {
-        public PropertyValuesConfigurationBase()
+        protected PropertyValuesConfigurationBase()
         {
             HasKey(v => new { v.PropertyId, v.EntityId });
             Property(t => t.PropertyId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
@@ -16,27 +16,27 @@ namespace PersistedAttachedProperties.Persistance
         }
     }
 
-    public class PropertyValuesConfigurationInt : EntityTypeConfiguration<AttachedPropertyValue<int>>
+    public class PropertyValuesConfigurationInt : PropertyValuesConfigurationBase<int>
     {
         public string TableName { get { return "AttachedPropertyValuesInt"; } }
-        public PropertyValuesConfigurationInt()
+        /*public PropertyValuesConfigurationInt()
         {
             HasKey(v => new {v.PropertyId, v.EntityId});
             Property(t => t.PropertyId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(t => t.EntityId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(t => t.Value).HasMaxLength(Constants.Tables.Values.ValueMaxLength).IsVariableLength().IsOptional();
-        }
+        }*/
     }
 
-    public class PropertyValuesConfigurationLong : EntityTypeConfiguration<AttachedPropertyValue<long>>
+    public class PropertyValuesConfigurationLong : PropertyValuesConfigurationBase<long>
     {
         public string TableName { get { return "AttachedPropertyValuesBigInt"; } }
-        public PropertyValuesConfigurationLong()
+        /*public PropertyValuesConfigurationLong()
         {
             HasKey(v => new { v.PropertyId, v.EntityId });
             Property(t => t.PropertyId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(t => t.EntityId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             Property(t => t.Value).HasMaxLength(Constants.Tables.Values.ValueMaxLength).IsVariableLength().IsOptional();
-        }
+        }*/
     }
 }

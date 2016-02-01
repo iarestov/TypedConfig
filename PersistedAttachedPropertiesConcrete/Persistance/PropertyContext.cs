@@ -15,7 +15,6 @@ namespace PersistedAttachedProperties.Persistance
             modelBuilder.Configurations.Add(new PropertyConfiguration());
             modelBuilder.Configurations.Add(new PropertyValuesConfigurationInt());
             modelBuilder.Configurations.Add(new PropertyValuesConfigurationLong());
-            
         }
     }
 }

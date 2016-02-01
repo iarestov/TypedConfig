@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TypedConfig.Tests</RootNamespace>
     <AssemblyName>TypedConfig.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -118,6 +119,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -139,6 +141,10 @@
     <ProjectReference Include="..\PerformanceSmokeTest\PerformanceSmokeTest.csproj">
       <Project>{fabfeea4-dc7b-4f0a-94e6-7771cb602846}</Project>
       <Name>PerformanceSmokeTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PersistedAttachedPropertiesConcrete\PersistedAttachedPropertiesConcrete.csproj">
+      <Project>{6afc0548-671b-4b7c-9120-e3eb8e84e563}</Project>
+      <Name>PersistedAttachedPropertiesConcrete</Name>
     </ProjectReference>
     <ProjectReference Include="..\PersistedAttachedSettings\PersistedAttachedProperties.csproj">
       <Project>{EF78303C-10FA-46D7-BDFB-77CB2677DC28}</Project>

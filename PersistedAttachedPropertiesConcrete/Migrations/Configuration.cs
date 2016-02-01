@@ -26,4 +26,5 @@ namespace PersistedAttachedProperties.Migrations
             //
         }
     }
+
 }

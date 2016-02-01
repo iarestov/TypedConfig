@@ -1,29 +1,26 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-
-[assembly: AssemblyTitle("PersistedAttachedSettings")]
-[assembly: AssemblyDescription("Allows to store and load in DB typed data automatically")]
+[assembly: AssemblyTitle("PersistedAttachedPropertiesConcrete")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Andrey Leskov")]
-[assembly: AssemblyProduct("PersistedAttachedSettings")]
-[assembly: AssemblyCopyright("Copyright © 2015 Andrey Leskov")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("PersistedAttachedPropertiesConcrete")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
-
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-
-[assembly: Guid("ef78303c-10fa-46d7-bdfb-77cb2677dc28")]
+[assembly: Guid("aae5bc8b-cc86-4d4a-a5dd-e26c8c69a7fb")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -35,6 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-
-[assembly: AssemblyVersion("1.4.5.1")]
-[assembly: AssemblyFileVersion("1.4.5.1")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
