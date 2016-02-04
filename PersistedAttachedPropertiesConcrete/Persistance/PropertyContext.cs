@@ -6,8 +6,8 @@ namespace PersistedAttachedProperties.Persistance
     public class PropertyContext : DbContext
     {
         public DbSet<DomainEntity> DomainEntities { get; set; }
-        public DbSet<AttachedPropertyValue<long>> DomainEntityAttachedPropertyValuesLong { get; set; }
-        public DbSet<AttachedPropertyValue<int>> DomainEntityAttachedPropertyValuesInt { get; set; }
+        public DbSet<AttachedPropertyValueLong> DomainEntityAttachedPropertyValuesLong { get; set; }
+        public DbSet<AttachedPropertyValueInt> DomainEntityAttachedPropertyValuesInt { get; set; }
         public DbSet<AttachedProperty> DomainEntityAttachedProperties { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -7,7 +7,7 @@ using SpecsFor;
 
 namespace TypedConfig.Tests
 {
-    public class AttachedSettings_Persisting_Tests : SpecsFor<AttachedSettingsFactory<IExampleTypedConfig, int>>
+    public class AttachedSettings_Persisting_Tests : SpecsFor<AttachedSettingsFactory<IExampleTypedConfig>>
     {
         protected int EntityId;
         protected IExampleTypedConfig Config;
@@ -19,6 +19,7 @@ namespace TypedConfig.Tests
             {
                 context.Database.ExecuteSqlCommand("TRUNCATE TABLE AttachedProperties");
                 context.Database.ExecuteSqlCommand("TRUNCATE TABLE AttachedPropertyValuesInt");
+                context.Database.ExecuteSqlCommand("TRUNCATE TABLE AttachedPropertyValuesLong");
             }
 
             EntityId = (new Fixture()).Create<int>();

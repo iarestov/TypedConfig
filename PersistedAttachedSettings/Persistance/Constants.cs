@@ -21,5 +21,10 @@ namespace PersistedAttachedProperties.Persistance
                 public const int ValueMaxLength = 1024;
             }
         }
+
+        public static class Mapping
+        {
+            public const string AttachedDataIdentityProperyName = "Id";
+        }
     }
 }

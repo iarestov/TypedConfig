@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("PersistedAttachedSettings")]
 [assembly: AssemblyDescription("Allows to store and load in DB typed data automatically")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Andrey Leskov")]
+[assembly: AssemblyCompany("Solomoto")]
 [assembly: AssemblyProduct("PersistedAttachedSettings")]
-[assembly: AssemblyCopyright("Copyright © 2015 Andrey Leskov")]
+[assembly: AssemblyCopyright("Copyright © 2015 Solomoto")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -36,5 +36,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.4.5.1")]
-[assembly: AssemblyFileVersion("1.4.5.1")]
+[assembly: AssemblyVersion("1.11.*")]
+[assembly: AssemblyFileVersion("1.11.*")]
