@@ -40,8 +40,8 @@ namespace PersistedAttachedProperties.AttachedProperties
                     if (!KnownSerializers.ContainsKey(type))
                     {
                         KnownProperties.Add(type, InitDbPropertyDescriptions(type));
-                        KnownDeserializers.Add(type, desealizer);
-                        KnownSerializers.Add(type, serializer);
+                        KnownDeserializers[type] = desealizer;
+                        KnownSerializers[type] = serializer;
                     }
                 }
             }
