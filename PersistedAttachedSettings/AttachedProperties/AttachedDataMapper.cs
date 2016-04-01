@@ -18,9 +18,11 @@ namespace PersistedAttachedProperties.AttachedProperties
         private static readonly Dictionary<Type, ITypeDeserializer> KnownDeserializers =
             new Dictionary<Type, ITypeDeserializer>();
 
-        private readonly IAttachedPropertyContextLong _ctx;
+		private static readonly object LockGuard = new object();
 
-        private readonly object _guard = new object();
+
+        private readonly IAttachedPropertyContextLong _ctx;
+        
 
         public AttachedDataMapper(IAttachedPropertyContextLong ctx)
         {
@@ -35,7 +37,7 @@ namespace PersistedAttachedProperties.AttachedProperties
             // ReSharper disable once InconsistentlySynchronizedField
             if (!KnownSerializers.ContainsKey(type))
             {
-                lock (_guard)
+                lock (LockGuard)
                 {
                     if (!KnownSerializers.ContainsKey(type))
                     {
@@ -56,7 +58,7 @@ namespace PersistedAttachedProperties.AttachedProperties
             // ReSharper disable once InconsistentlySynchronizedField
             if (KnownSerializers.ContainsKey(type))
             {
-                lock (_guard)
+                lock (LockGuard)
                 {
                     if (KnownSerializers.ContainsKey(type))
                     {
